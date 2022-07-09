@@ -11,6 +11,7 @@ export function handlePostCreated(event: PostCreatedEvent): void {
   let post = new Post(event.params.id.toString());
   post.title = event.params.title;
   post.contentHash = event.params.hash;
+  post.published = true;
   let data = ipfs.cat(event.params.hash);
   if (data) {
     let value = json.fromBytes(data).toObject()
@@ -30,8 +31,7 @@ export function handlePostUpdated(event: PostUpdatedEvent): void {
   if (post) {
     post.title = event.params.title;
     post.contentHash = event.params.hash;
-    // post.published = event.params.published;
-    post.published = true;
+    post.published = event.params.published;
     let data = ipfs.cat(event.params.hash);
     if (data) {
       let value = json.fromBytes(data).toObject()
