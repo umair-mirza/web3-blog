@@ -36,7 +36,7 @@ export default function Post() {
     if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'local') {
       provider = new ethers.providers.JsonRpcProvider()
     } else if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'testnet') {
-      provider = new ethers.providers.JsonRpcProvider(process.env.MUMBAI_TESTNET_RPC_URL)
+      provider = ethers.providers.JsonRpcProvider(process.env.MUMBAI_TESTNET_RPC_URL)
     } else {
       provider = new ethers.providers.JsonRpcProvider('https://polygon-rpc.com/')
     }
